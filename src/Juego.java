@@ -22,6 +22,7 @@ public class Juego extends javax.swing.JFrame {
     public Juego() {
         this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -46,7 +47,7 @@ public class Juego extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(1102, Short.MAX_VALUE)
+                .addContainerGap(730, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

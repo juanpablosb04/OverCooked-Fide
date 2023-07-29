@@ -22,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
