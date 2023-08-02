@@ -44,28 +44,20 @@ public class Juego extends javax.swing.JFrame {
         jPanel1 = new FondoPartida();
         BotonI = new javax.swing.JButton();
         BotonD = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         PanelPedido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(BotonI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 130, 60));
+        jPanel1.add(BotonI, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 60));
 
         BotonD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonDActionPerformed(evt);
             }
         });
-        jPanel1.add(BotonD, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 470, 130, 60));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FlechaI.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, -1, 80));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1200px-Flecha_tesela.svg (2).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 460, -1, 80));
+        jPanel1.add(BotonD, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 390, 130, 60));
 
         PanelPedido.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -130,8 +122,6 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton BotonD;
     private javax.swing.JButton BotonI;
     public javax.swing.JPanel PanelPedido;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     class FondoPartida extends JPanel{
