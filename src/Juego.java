@@ -1,11 +1,14 @@
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,6 +20,12 @@ import javax.swing.Timer;
  * @author Juan Pablo
  */
 public class Juego extends javax.swing.JFrame {
+   
+    private Timer mTimer;
+    private int milliseconds = 0;
+    private int minutes = 0;
+    private int seconds = 0;
+    
     ArrayList al = new ArrayList(3);
     Timer tiempoOrden1;
     Timer tiempoOrden2;
@@ -29,6 +38,9 @@ public class Juego extends javax.swing.JFrame {
     public Juego() {
         this.setContentPane(fondo);
         initComponents();
+        mTimer = new Timer(10, (ActionEvent e) -> {
+        });
+      mTimer.start();
         this.setLocationRelativeTo(null);
         BotonI.setOpaque(false);
         BotonI.setContentAreaFilled(false);
@@ -60,9 +72,32 @@ public class Juego extends javax.swing.JFrame {
             
             }
            }
-        });
+        }); 
     }
-
+    
+    private void StartC(){
+    actualizaTiempo();
+    actualizaLabel();
+    }
+    
+    private void actualizaTiempo(){
+       seconds++; 
+        if (seconds == 60) {
+       seconds = 0;
+       minutes++;
+       }
+        if (minutes == 5){
+        this.dispose();
+        }
+    }
+    
+    private void actualizaLabel(){
+    String cronometro = minutes + ":" +seconds;
+    Tiempo.setText(cronometro);
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +120,9 @@ public class Juego extends javax.swing.JFrame {
         ordenSiguiente = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
         ordenLejana = new javax.swing.JLabel();
+        Tiempo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         ordenPrincipal.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         ordenPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,6 +187,24 @@ public class Juego extends javax.swing.JFrame {
         ordenLejana.setText("Esperando orden...");
         jPanel1.add(ordenLejana, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
+        Tiempo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
+        Tiempo.setForeground(new java.awt.Color(42, 201, 42));
+        Tiempo.setText("0:00");
+        jPanel1.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 120, 80));
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(42, 203, 42));
+        jLabel3.setText("Time");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, -1, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 530));
 
         pack();
@@ -157,6 +213,12 @@ public class Juego extends javax.swing.JFrame {
     private void BotonDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonDActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        GameOver nuevo = new GameOver();
+        nuevo.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,7 +259,10 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton BotonD;
     private javax.swing.JButton BotonI;
     public javax.swing.JPanel PanelPedido;
+    private javax.swing.JLabel Tiempo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
@@ -211,8 +276,10 @@ public class Juego extends javax.swing.JFrame {
     class FondoPartida extends JPanel{
         private Image imagen;
         public void paint (Graphics g){
-            imagen = new ImageIcon(getClass().getResource("Imagenes/fondonuevo.jpg")).getImage();
-            g.drawImage(imagen, 0, 0, getWidth(),getHeight(), this);
+            imagen = new ImageIcon(getClass().getResource
+        ("Imagenes/fondonuevo.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(),
+                    getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
