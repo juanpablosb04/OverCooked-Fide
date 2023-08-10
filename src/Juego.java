@@ -24,7 +24,7 @@ public class Juego extends javax.swing.JFrame {
     private Timer mTimer;
     private int milliseconds = 100;
     private int minutes = 5;
-    private int seconds = 60;
+    private int seconds = 1;
     
     ArrayList al = new ArrayList(3);
     Timer tiempoOrden1;
@@ -41,9 +41,7 @@ public class Juego extends javax.swing.JFrame {
         mTimer = new Timer(10, (ActionEvent e) -> {
         StartC();
         });
-        
-        //Cronometro();
-        //mTimer.start();
+        mTimer.start();
         this.setLocationRelativeTo(null);
         BotonI.setOpaque(false);
         BotonI.setContentAreaFilled(false);
@@ -141,10 +139,8 @@ public class Juego extends javax.swing.JFrame {
         lbl2 = new javax.swing.JLabel();
         ordenLejana = new javax.swing.JLabel();
         Tiempo = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         ms = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         ordenPrincipal.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         ordenPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -212,32 +208,17 @@ public class Juego extends javax.swing.JFrame {
         Tiempo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         Tiempo.setForeground(new java.awt.Color(255, 255, 255));
         Tiempo.setText("0m: 0s");
-        jPanel1.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 30, 140, 80));
+        jPanel1.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, -20, 100, 100));
+
+        ms.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ms.setForeground(new java.awt.Color(255, 255, 255));
+        ms.setText(".000");
+        jPanel1.add(ms, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, -20, 90, 120));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Time");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
-
-        ms.setForeground(new java.awt.Color(255, 255, 255));
-        ms.setText(".000");
-        jPanel1.add(ms, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 60, 40, 20));
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, -1, -1));
+        jLabel3.setText("Time:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 530));
 
@@ -247,17 +228,6 @@ public class Juego extends javax.swing.JFrame {
     private void BotonDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonDActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        GameOver nuevo = new GameOver();
-        nuevo.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mTimer.start();
-        jButton2.setEnabled(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,8 +269,6 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton BotonI;
     public javax.swing.JPanel PanelPedido;
     private javax.swing.JLabel Tiempo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
