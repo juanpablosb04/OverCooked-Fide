@@ -24,6 +24,6 @@ public class Ingrediente {
 
     @Override
     public String toString() {
-        return "Ingrediente{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "Ingrediente: " + id + "\t" + nombre;
     }
 }

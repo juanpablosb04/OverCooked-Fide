@@ -97,6 +97,7 @@ public class ListaIngrediente {
         return false;
     }
     
+    @Override
     public String toString(){
         if (listaVacia()){
             return "NO HAY ELEMENTOS EN LA LISTA\n";
