@@ -27,7 +27,7 @@ public class ListaCircularIngrediente {
     }
     
     public boolean agregar(Ingrediente dato){
-        if (contador <= 5){
+        if (contador < 5){
             Nodo nuevoNodo = new Nodo(dato);
 
             if (listaVacia()){ // PRIMER ELEMENTO
@@ -59,6 +59,24 @@ public class ListaCircularIngrediente {
             actual = actual.getSiguiente();
         }while(actual != inicio);
         return false;
+    }
+    
+    public Ingrediente obtenerIngrediente(int posicion){
+        Ingrediente dato = new Ingrediente("", "");
+        Nodo actual = inicio;
+        int i = 0;
+        if (listaVacia())
+            return dato;
+        if (posicion > 5 || posicion < 0)
+            return dato;
+        do{
+            if(i == posicion){
+                return actual.getDato();
+            }
+            i++;
+            actual = actual.getSiguiente();
+        }while(actual != inicio);
+        return dato;
     }
     
     public boolean eliminar(Ingrediente dato){
@@ -142,14 +160,15 @@ public class ListaCircularIngrediente {
     
     public String mostrarLista(){
         StringBuilder sb = new StringBuilder();
-
+        int i = 0;
         if (listaVacia())
             return "NO HAY ELEMENTOS EN LA LISTA\n";
         
         Nodo actual = inicio;
         do{
-            sb.append(" -> ").append(actual.getDato().getNombre());
+            sb.append(" -> ").append("[").append(i).append("] ").append(actual.getDato().getNombre());
             actual = actual.getSiguiente();
+            i++;
         }while(actual != inicio);
         return sb.toString();
     }

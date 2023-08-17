@@ -1,11 +1,12 @@
-public class ListaIngrediente {
-    private Nodo inicio;
+public class ListaOrden {
     
-    public ListaIngrediente(){
+    Nodo inicio;
+    
+    public ListaOrden(){
         this.inicio = null;
     }
-
-    public Nodo getInicio() {
+    
+     public Nodo getInicio() {
         return inicio;
     }
     
@@ -13,7 +14,7 @@ public class ListaIngrediente {
         return inicio == null;
     }
     
-    public boolean insertarFinal(Ingrediente dato){
+    public boolean insertarFinal(Orden dato){
         Nodo nuevoNodo = new Nodo(dato);
         
         if (listaVacia()){ // Primer elemento
@@ -28,14 +29,14 @@ public class ListaIngrediente {
         return true;
     }
     
-    public boolean insertarInicio(Ingrediente dato){
+    public boolean insertarInicio(Orden dato){
         Nodo nuevoNodo = new Nodo(dato);
         nuevoNodo.setSiguiente(inicio);
         inicio = nuevoNodo;
         return true;
     }
     
-    public boolean buscar(Ingrediente dato){
+    public boolean buscar(Orden dato){
         Nodo actual = inicio;
         while(actual != null){
             if (actual.getDato() == dato){
@@ -46,7 +47,7 @@ public class ListaIngrediente {
         return false;
     }
     
-    public boolean buscarRecursivo(Nodo actual,Ingrediente dato){
+    public boolean buscarRecursivo(Nodo actual,Orden dato){
         if (actual == null)
             return false;
         
@@ -77,7 +78,7 @@ public class ListaIngrediente {
         return cantidadElementosRecursivo(inicio, 0);
     }
     
-    public boolean eliminarElemento(Ingrediente dato){
+    public boolean eliminarElemento(Orden dato){
         if (listaVacia())
             return false;
         
@@ -97,13 +98,13 @@ public class ListaIngrediente {
         return false;
     }
     
-    public Ingrediente obtenerIngrediente(int posicion){
-        Ingrediente dato = new Ingrediente("", "");
+    public Orden obtenerOrden(int posicion){
+        Orden dato = new Orden("", 0);
         Nodo actual = inicio;
         int i = 0;
         if (listaVacia())
             return dato;
-        if (posicion > 4 || posicion < 0)
+        if (posicion > 5 || posicion < 0)
             return dato;
         while(actual != null){
             if(i == posicion){
@@ -144,9 +145,9 @@ public class ListaIngrediente {
     
     private class Nodo{
         private Nodo siguiente;
-        private Ingrediente dato;
+        private Orden dato;
 
-        public Nodo(Ingrediente dato) {
+        public Nodo(Orden dato) {
             this.siguiente = null;
             this.dato = dato;
         }
@@ -159,11 +160,11 @@ public class ListaIngrediente {
             this.siguiente = siguiente;
         }
 
-        public Ingrediente getDato() {
+        public Orden getDato() {
             return dato;
         }
 
-        public void setDato(Ingrediente dato) {
+        public void setDato(Orden dato) {
             this.dato = dato;
         }
 
