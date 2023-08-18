@@ -15,7 +15,7 @@ public class Control {
     public Control(){
         
         // CONSTRUCCION DE OBJETOS DEL JUEGO
-        
+        //img ---> ingrediente0.png
         // INSTANCIA DE INGREDIENTES
         this.ingrediente0 = new Ingrediente("ingrediente0", "Pan");
         this.ingrediente1 = new Ingrediente("ingrediente1", "Carne");
@@ -62,7 +62,7 @@ public class Control {
         
         // CARGAR DATOS ALEATORIOS EN CINTA TRANSPORTADORA
         for(int i = 0; i < 5; i++){
-            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(0, 4)));
+            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(4, 0)));
         }
     }
     
@@ -152,7 +152,7 @@ public class Control {
             
             ordenJuego = listaOrdenJuego.obtenerOrden(0);
             
-            do{ // ESTE CICLO SIMULA EL CRONOMETRO EL CRONOMETRO!  
+            do{ // ESTE CICLO SIMULA EL CRONOMETRO!  
                 
                 System.out.println("ORDENES EN JUEGO: ");
                 System.out.println(listaOrdenJuego.toString());
@@ -178,7 +178,7 @@ public class Control {
                 Scanner myObj = new Scanner(System.in);  
                 eliminar = myObj.nextLine();  
                 
-                System.out.println("");
+                System.out.println("SELECCIONAR INGREDIENTE");
                 System.out.println("POSICION DEL INGREDIENTE: ");
                 myObj = new Scanner(System.in);  
                 String input = myObj.nextLine();  
