@@ -14,11 +14,9 @@ public class Main {
      */
     public static void main(String[] args) {
     
-//        Menu Inicial = new Menu();
-//        Inicial.setVisible(true);
+        Menu Inicial = new Menu();
+        Inicial.setVisible(true);
 
-          Control control = new Control();
-          control.jugar();
      
     }
     

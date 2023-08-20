@@ -13,6 +13,7 @@ public class Ingredientes {
     private String carne;
     private String queso;
     private String lechuga;
+    
 
     public Ingredientes(String pan, String carne) {
         this.pan = pan;

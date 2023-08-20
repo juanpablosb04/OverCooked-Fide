@@ -25,39 +25,45 @@ import javax.swing.Timer;
 
 
 public class Juego extends javax.swing.JFrame {
-   
+    //Inicio Variables para Ingredientes
     private Ingrediente ingrediente0;
     private Ingrediente ingrediente1;
     private Ingrediente ingrediente2;
     private Ingrediente ingrediente3;
-    int validarHCarne=0;
-    int validarHQueso=0;
-    int validarHClasica=0;
-    int usoPan=0;
-    int usoCarne=0;
-    
     ListaIngrediente listaIngrediente; 
     ListaOrden listaOrden;
     ListaCircularIngrediente cintaTransportadora;
+    //Fin Variables para Ingredientes
     
-    private int puntos=0;
+    //Inicio variables para validacion de orden
+    private int validarHCarne=0;
+    private int validarHQueso=0;
+    private int validarHClasica=0;
+    private int usoPan=0;
+    private int usoCarne=0;
+    private int usoQueso=0;
+    private int usoLechuga=0;
+    //Inicio variables para validacion de orden
+
+    int puntos=0;//Puntos del juego
     
+    //Inicio de variables para el cronometro
     private Timer mTimer;
     private int milliseconds = 100;
     private int minutes = 5;
     private int seconds = 1;
+    //Fin de variables para cronometro
     
+    //Inicio de variables para generar ordenes
     ArrayList al = new ArrayList(3);
     Timer tiempoOrden1;
     Timer tiempoOrden2;
     Timer tiempoOrden3;
-    private int pts = 0;
-    /**
-     * Creates new form Juego
-     */
-    FondoPartida fondo = new FondoPartida();
+    //Fin de variables para generar ordenes
+    
+    FondoPartida fondo = new FondoPartida();//Fondo del juego
     public Juego() {
-        //INICIO DEL SISTEMA DE ORDENES
+        //Inicio del sistema de ordenes
         this.setContentPane(fondo);
         initComponents();
         mTimer = new Timer(10, (ActionEvent e) -> {
@@ -76,12 +82,14 @@ public class Juego extends javax.swing.JFrame {
         String txt = (String) al.get(a);
         ordenPrincipal1.setText(txt);
         
-        tiempoOrden2 = new Timer(5000, null);
+        tiempoOrden2 = new Timer(10000, null);
         tiempoOrden2.start();
         tiempoOrden2.addActionListener(new java.awt.event.ActionListener(){
         @Override
         public void actionPerformed(java.awt.event.ActionEvent evt){
-            if(ordenSiguiente.getText().equals("Esperando orden...")){
+            if(ordenPrincipal1.getText().equals("Esperando orden...")){
+                generarOrdenPrincipal();
+            }else if(ordenSiguiente.getText().equals("Esperando orden...")){
                 generarSiguienteOrden();
             }else if(ordenLejana.getText().equals("Esperando orden...")){
                 generarOrdenLejana();
@@ -89,7 +97,7 @@ public class Juego extends javax.swing.JFrame {
             
             }
            }
-        }); 
+        });
         //FIN DEL SISTEMA DE ORDENES
         
         //INICIO DEL SISTEMA DE INGREDIENTES Y CINTA
@@ -111,12 +119,30 @@ public class Juego extends javax.swing.JFrame {
         for(int i = 0; i < 5; i++){
             cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(4, 0)));
         }
-        
+        //Colocar los ingredientes en los botones
         colocarNombreEnBotones();
         
         
     }
     
+    //Generador de ordenes
+    public void generarOrdenPrincipal(){
+        int a = (int) (Math.random()* 3);
+        String txt3 = (String) al.get(a);
+        ordenPrincipal1.setText(txt3);
+    }
+    public void generarSiguienteOrden(){
+    int a = (int) (Math.random()* 3);
+    String txt1 = (String) al.get(a);
+    ordenSiguiente.setText(txt1);
+    }
+    public void generarOrdenLejana(){
+        int a = (int) (Math.random()* 3);
+        String txt2 = (String) al.get(a);
+        ordenLejana.setText(txt2);
+    }//Generador de ordenes
+    
+    //Generador random de ingredientes
     private int randomNumber(int max, int min){
         return (int) ((Math.random() * (max - min)) + min);
     }
@@ -139,20 +165,16 @@ public class Juego extends javax.swing.JFrame {
         btnCinco.setText(ingredienteCinco);
 
     }
-    
+    //Revisa si hay 3 ingredientes en la cinta y genera 2 nuevos inmediatamente
     private void comprobarIngredienteDisponibles(){
         if(cintaTransportadora.cantidadElementos() == 3){
             cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(0, 4)));
             cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(0, 4)));
         }else{
-        
         }
     }
-    
+    //Realiza la validacion del ingrediente seleccionado con la orden activa en ese momento
     private void validarIngredientes(Ingrediente ingrediente){
-        
-    
-    
         if(ordenPrincipal1.getText().equals("HAMBURGUESA DE CARNE: Pan,Carne")){
         
             if(ingrediente.equals(ingrediente0) && usoPan==0){
@@ -174,11 +196,83 @@ public class Juego extends javax.swing.JFrame {
                 usoPan=0;
                 usoCarne=0;
                 validarHCarne=0;
-            }else{
-                
+                ordenPrincipal1.setText(ordenSiguiente.getText());
+                ordenSiguiente.setText(ordenLejana.getText());
+                ordenLejana.setText("Esperando orden...");
+            }else{    
             }
         }
+        
+        if(ordenPrincipal1.getText().equals("HAMBURGUESA DE QUESO: Pan, Carne y Queso")){
+        
+            if(ingrediente.equals(ingrediente0) && usoPan==0){
+                usoPan++;
+                validarHQueso++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else if(ingrediente.equals(ingrediente1) && usoCarne==0){
+                usoCarne++;
+                validarHQueso++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else if(ingrediente.equals(ingrediente2) && usoQueso==0){
+                usoQueso++;
+                validarHQueso++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else{
+                JOptionPane.showMessageDialog(null,"Este ingrediente ya fue incluido");
+            }
             
+            if(validarHQueso==3){
+                JOptionPane.showMessageDialog(null,"Orden Completada! ");
+                puntos+=10;
+                lblPuntos.setText(String.valueOf(puntos));
+                usoPan=0;
+                usoCarne=0;
+                usoQueso=0;
+                validarHQueso=0;
+                ordenPrincipal1.setText(ordenSiguiente.getText());
+                ordenSiguiente.setText(ordenLejana.getText());
+                ordenLejana.setText("Esperando orden...");
+            }else{    
+            }
+        }
+        
+        if(ordenPrincipal1.getText().equals("HAMBURGUESA CLASICA: Pan, Carne, Queso y Lechuga")){
+        
+            if(ingrediente.equals(ingrediente0) && usoPan==0){
+                usoPan++;
+                validarHClasica++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else if(ingrediente.equals(ingrediente1) && usoCarne==0){
+                usoCarne++;
+                validarHClasica++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else if(ingrediente.equals(ingrediente2) && usoQueso==0){
+                usoQueso++;
+                validarHClasica++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else if(ingrediente.equals(ingrediente3) && usoLechuga==0){
+                usoLechuga++;
+                validarHClasica++;
+                cintaTransportadora.eliminar(ingrediente);
+            }else{
+                JOptionPane.showMessageDialog(null,"Este ingrediente ya fue incluido");
+            }
+            
+            if(validarHClasica==4){
+                JOptionPane.showMessageDialog(null,"Orden Completada! ");
+                puntos+=15;
+                lblPuntos.setText(String.valueOf(puntos));
+                usoPan=0;
+                usoCarne=0;
+                usoQueso=0;
+                usoLechuga=0;
+                validarHClasica=0;
+                ordenPrincipal1.setText(ordenSiguiente.getText());
+                ordenSiguiente.setText(ordenLejana.getText());
+                ordenLejana.setText("Esperando orden...");
+            }else{    
+            }
+        }
     }
     
     
@@ -315,23 +409,25 @@ public class Juego extends javax.swing.JFrame {
         ordenPrincipal1.setForeground(new java.awt.Color(255, 255, 255));
         ordenPrincipal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ordenPrincipal1.setText("Esperando orden...");
-        jPanel1.add(ordenPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 370, 20));
+        jPanel1.add(ordenPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 800, 20));
 
         lbl1.setForeground(new java.awt.Color(255, 255, 255));
         lbl1.setText("Siguiente Orden");
         jPanel1.add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
+        ordenSiguiente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ordenSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         ordenSiguiente.setText("Esperando orden...");
-        jPanel1.add(ordenSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 280, -1));
+        jPanel1.add(ordenSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 350, -1));
 
         lbl2.setForeground(new java.awt.Color(255, 255, 255));
         lbl2.setText("Orden mas Lejana");
         jPanel1.add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
+        ordenLejana.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ordenLejana.setForeground(new java.awt.Color(255, 255, 255));
         ordenLejana.setText("Esperando orden...");
-        jPanel1.add(ordenLejana, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        jPanel1.add(ordenLejana, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 360, -1));
 
         Tiempo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         Tiempo.setForeground(new java.awt.Color(255, 255, 255));
@@ -664,14 +760,5 @@ public class Juego extends javax.swing.JFrame {
             super.paint(g);
         }
     }
-    public void generarSiguienteOrden(){
-    int a = (int) (Math.random()* 3);
-    String txt1 = (String) al.get(a);
-    ordenSiguiente.setText(txt1);
-}
-public void generarOrdenLejana(){
-    int a = (int) (Math.random()* 3);
-    String txt2 = (String) al.get(a);
-    ordenLejana.setText(txt2);
-}
+    
 }

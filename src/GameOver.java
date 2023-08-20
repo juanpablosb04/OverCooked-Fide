@@ -8,7 +8,7 @@
  * @author luis-
  */
 public class GameOver extends javax.swing.JFrame {
-
+    Juego llamar = new Juego();
     /**
      * Creates new form GameOver
      */
@@ -31,7 +31,7 @@ public class GameOver extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblPuntuacionFinal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,9 +58,9 @@ public class GameOver extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tu Puntuacion:");
 
-        jLabel4.setFont(new java.awt.Font("Snap ITC", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("00");
+        lblPuntuacionFinal.setFont(new java.awt.Font("Snap ITC", 0, 36)); // NOI18N
+        lblPuntuacionFinal.setForeground(new java.awt.Color(255, 255, 255));
+        lblPuntuacionFinal.setText("00");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,7 +73,7 @@ public class GameOver extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(200, 200, 200)
-                        .addComponent(jLabel4))
+                        .addComponent(lblPuntuacionFinal))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
                         .addComponent(jButton1))
@@ -92,7 +92,7 @@ public class GameOver extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(lblPuntuacionFinal)
                 .addGap(13, 13, 13)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -109,6 +109,7 @@ public class GameOver extends javax.swing.JFrame {
         this.dispose();
         Menu nuevo = new Menu();
         nuevo.setVisible(true);
+        lblPuntuacionFinal.setText(String.valueOf(llamar.puntos));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -151,7 +152,7 @@ public class GameOver extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblPuntuacionFinal;
     // End of variables declaration//GEN-END:variables
 }
