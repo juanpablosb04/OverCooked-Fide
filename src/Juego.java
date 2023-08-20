@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -81,13 +83,16 @@ public class Juego extends javax.swing.JFrame {
         String txt = (String) al.get(a);
         ordenPrincipal1.setText(txt);
         
-        tiempoOrden2 = new Timer(10000, null);
+        imagenOrdenActiva();
+        
+        tiempoOrden2 = new Timer(20000, null);
         tiempoOrden2.start();
         tiempoOrden2.addActionListener(new java.awt.event.ActionListener(){
         @Override
         public void actionPerformed(java.awt.event.ActionEvent evt){
             if(ordenPrincipal1.getText().equals("Esperando orden...")){
                 generarOrdenPrincipal();
+                imagenOrdenActiva();
             }else if(ordenSiguiente.getText().equals("Esperando orden...")){
                 generarSiguienteOrden();
             }else if(ordenLejana.getText().equals("Esperando orden...")){
@@ -116,7 +121,8 @@ public class Juego extends javax.swing.JFrame {
         
         // CARGAR DATOS ALEATORIOS EN CINTA TRANSPORTADORA
         for(int i = 0; i < 5; i++){
-            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(4, 0)));
+            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente
+        (randomNumber(4, 0)));
         }
         //Colocar los ingredientes en los botones
         colocarNombreEnBotones();
@@ -148,27 +154,34 @@ public class Juego extends javax.swing.JFrame {
     
     private void colocarNombreEnBotones(){
         
-        String ingredienteUno = String.valueOf(cintaTransportadora.obtenerIngrediente(0));
+        String ingredienteUno = String.valueOf
+        (cintaTransportadora.obtenerIngrediente(0));
         btnUno.setText(ingredienteUno);
         
-        String ingredienteDos = String.valueOf(cintaTransportadora.obtenerIngrediente(1));
+        String ingredienteDos = String.valueOf
+        (cintaTransportadora.obtenerIngrediente(1));
         btnDos.setText(ingredienteDos);
         
-        String ingredienteTres = String.valueOf(cintaTransportadora.obtenerIngrediente(2));
+        String ingredienteTres = String.valueOf
+        (cintaTransportadora.obtenerIngrediente(2));
         btnTres.setText(ingredienteTres);
         
-        String ingredienteCuatro = String.valueOf(cintaTransportadora.obtenerIngrediente(3));
+        String ingredienteCuatro = String.valueOf
+        (cintaTransportadora.obtenerIngrediente(3));
         btnCuatro.setText(ingredienteCuatro);
         
-        String ingredienteCinco = String.valueOf(cintaTransportadora.obtenerIngrediente(4));
+        String ingredienteCinco = String.valueOf
+        (cintaTransportadora.obtenerIngrediente(4));
         btnCinco.setText(ingredienteCinco);
 
     }
     //Revisa si hay 3 ingredientes en la cinta y genera 2 nuevos inmediatamente
     private void comprobarIngredienteDisponibles(){
         if(cintaTransportadora.cantidadElementos() == 3){
-            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(0, 4)));
-            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente(randomNumber(0, 4)));
+            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente
+        (randomNumber(0, 4)));
+            cintaTransportadora.agregar(listaIngrediente.obtenerIngrediente
+        (randomNumber(0, 4)));
         }else{
         }
     }
@@ -200,6 +213,7 @@ public class Juego extends javax.swing.JFrame {
                 ordenPrincipal1.setText(ordenSiguiente.getText());
                 ordenSiguiente.setText(ordenLejana.getText());
                 ordenLejana.setText("Esperando orden...");
+                imagenOrdenActiva();
             }else{    
             }
         }
@@ -236,6 +250,7 @@ public class Juego extends javax.swing.JFrame {
                 ordenPrincipal1.setText(ordenSiguiente.getText());
                 ordenSiguiente.setText(ordenLejana.getText());
                 ordenLejana.setText("Esperando orden...");
+                imagenOrdenActiva();
             }else{    
             }
         }
@@ -277,6 +292,7 @@ public class Juego extends javax.swing.JFrame {
                 ordenPrincipal1.setText(ordenSiguiente.getText());
                 ordenSiguiente.setText(ordenLejana.getText());
                 ordenLejana.setText("Esperando orden...");
+                imagenOrdenActiva();
             }else{    
             }
         }
@@ -302,7 +318,7 @@ public class Juego extends javax.swing.JFrame {
             GameOver nuevo = new GameOver();
             nuevo.setVisible(true);
             this.dispose();
-           minutes = 5;
+            minutes = 5;
         }
          
     }
@@ -313,7 +329,29 @@ public class Juego extends javax.swing.JFrame {
     ms.setText("."+ milliseconds);
     }
     
+    private void imagenOrdenActiva(){
     
+    if(ordenPrincipal1.getText().equals("HAMBURGUESA DE CARNE: Pan,Carne")){
+            ImagenOrden(lblImagenOrden,"src/imagenes/HCarne.jpg");
+        }else if(ordenPrincipal1.getText().equals("HAMBURGUESA DE QUESO: "
+                + "Pan, Carne y Queso")){
+            ImagenOrden(lblImagenOrden,"src/imagenes/HQueso.jpg");
+        }else if(ordenPrincipal1.getText().equals("HAMBURGUESA CLASICA: "
+                + "Pan, Carne, Queso y Lechuga")){
+            ImagenOrden(lblImagenOrden,"src/imagenes/HClasica.jpg");
+        }
+        
+    }
+    
+    
+    private void ImagenOrden(JLabel lblImagenOrden, String root){
+        
+        ImageIcon image = new ImageIcon(root);
+        Icon icono = new ImageIcon(image.getImage().getScaledInstance
+        (lblImagenOrden.getWidth(), lblImagenOrden.getHeight(), Image.SCALE_DEFAULT));
+        lblImagenOrden.setIcon(icono);
+        this.repaint();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -353,6 +391,7 @@ public class Juego extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         lblPuntos = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblImagenOrden = new javax.swing.JLabel();
 
         ordenPrincipal.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         ordenPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -369,6 +408,7 @@ public class Juego extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("OverCooked Fide");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -383,7 +423,7 @@ public class Juego extends javax.swing.JFrame {
                 btnDosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 110, 90));
+        jPanel1.add(btnDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 590, 110, 90));
 
         PanelPedido.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -403,46 +443,48 @@ public class Juego extends javax.swing.JFrame {
         lbl3.setFont(new java.awt.Font("Elephant", 1, 24)); // NOI18N
         lbl3.setForeground(new java.awt.Color(255, 255, 255));
         lbl3.setText("ORDEN ACTIVA");
-        jPanel1.add(lbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+        jPanel1.add(lbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
 
         ordenPrincipal1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         ordenPrincipal1.setForeground(new java.awt.Color(255, 255, 255));
         ordenPrincipal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ordenPrincipal1.setText("Esperando orden...");
-        jPanel1.add(ordenPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 800, 20));
+        jPanel1.add(ordenPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 800, 20));
 
+        lbl1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl1.setForeground(new java.awt.Color(255, 255, 255));
         lbl1.setText("Siguiente Orden");
-        jPanel1.add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        jPanel1.add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 20));
 
         ordenSiguiente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ordenSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         ordenSiguiente.setText("Esperando orden...");
-        jPanel1.add(ordenSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 350, -1));
+        jPanel1.add(ordenSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 610, -1));
 
+        lbl2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl2.setForeground(new java.awt.Color(255, 255, 255));
         lbl2.setText("Orden mas Lejana");
-        jPanel1.add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        jPanel1.add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         ordenLejana.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ordenLejana.setForeground(new java.awt.Color(255, 255, 255));
         ordenLejana.setText("Esperando orden...");
-        jPanel1.add(ordenLejana, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 360, -1));
+        jPanel1.add(ordenLejana, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 620, -1));
 
         Tiempo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         Tiempo.setForeground(new java.awt.Color(255, 255, 255));
         Tiempo.setText("0m: 0s");
-        jPanel1.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, -20, 100, 100));
+        jPanel1.add(Tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, -10, 100, 100));
 
         ms.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ms.setForeground(new java.awt.Color(255, 255, 255));
         ms.setText(".000");
-        jPanel1.add(ms, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, -20, 90, 120));
+        jPanel1.add(ms, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, -20, 90, 120));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Time:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 10, -1, -1));
 
         btnTres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -454,7 +496,7 @@ public class Juego extends javax.swing.JFrame {
                 btnTresActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 110, 90));
+        jPanel1.add(btnTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 590, 110, 90));
 
         btnCuatro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -466,7 +508,7 @@ public class Juego extends javax.swing.JFrame {
                 btnCuatroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 110, 90));
+        jPanel1.add(btnCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 590, 110, 90));
 
         btnCinco.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -478,7 +520,7 @@ public class Juego extends javax.swing.JFrame {
                 btnCincoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 110, 90));
+        jPanel1.add(btnCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 590, 110, 90));
 
         btnUno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -490,7 +532,7 @@ public class Juego extends javax.swing.JFrame {
                 btnUnoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 110, 90));
+        jPanel1.add(btnUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 110, 90));
 
         jButton1.setText("DERECHA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -498,7 +540,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 380, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 550, -1, -1));
 
         jButton2.setText("IZQUIERDA");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -506,7 +548,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, -1, -1));
 
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
@@ -515,7 +557,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 50, 90));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 590, 50, 90));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -523,7 +565,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 50, 90));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 590, 50, 90));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -531,7 +573,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 50, 90));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 590, 50, 90));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -539,7 +581,7 @@ public class Juego extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 50, 90));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 590, 50, 90));
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -547,19 +589,22 @@ public class Juego extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, 50, 90));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 590, 50, 90));
 
         lblPuntos.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPuntos.setForeground(new java.awt.Color(255, 255, 255));
         lblPuntos.setText("0");
-        jPanel1.add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, 80, 50));
+        jPanel1.add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 60, 80, 50));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Puntos:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 60, -1, 50));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 60, -1, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 530));
+        lblImagenOrden.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblImagenOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 580, 420));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -744,6 +789,7 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
+    private javax.swing.JLabel lblImagenOrden;
     private javax.swing.JLabel lblPuntos;
     private javax.swing.JLabel ms;
     private javax.swing.JLabel orden2;
