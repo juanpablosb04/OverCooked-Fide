@@ -16,7 +16,8 @@ public class Main {
     
         Menu Inicial = new Menu();
         Inicial.setVisible(true);
-
+        
+        
      
     }
     

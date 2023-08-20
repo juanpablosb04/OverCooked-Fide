@@ -48,18 +48,6 @@ public class ListaCircularIngrediente {
         return false;
     }
     
-    public boolean buscar(Ingrediente dato){
-        Nodo actual = inicio;
-        if (listaVacia())
-            return false;
-        do{
-            if(actual.getDato() == dato){
-                return true;
-            }
-            actual = actual.getSiguiente();
-        }while(actual != inicio);
-        return false;
-    }
     
     public Ingrediente obtenerIngrediente(int posicion){
         Ingrediente dato = new Ingrediente("", "");
@@ -142,36 +130,7 @@ public class ListaCircularIngrediente {
         }
     }
     
-    @Override
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        
-        if(listaVacia())
-            return "NO HAY ELEMENTOS EN LA LISTA\n";
-
-        Nodo actual = inicio;
-        do{
-            sb.append(actual.toString()).append("\n");
-            actual = actual.getSiguiente();
-        }while(actual != inicio);
-        
-        return sb.toString();
-    }
     
-    public String mostrarLista(){
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        if (listaVacia())
-            return "NO HAY ELEMENTOS EN LA LISTA\n";
-        
-        Nodo actual = inicio;
-        do{
-            sb.append(" -> ").append("[").append(i).append("] ").append(actual.getDato().getNombre());
-            actual = actual.getSiguiente();
-            i++;
-        }while(actual != inicio);
-        return sb.toString();
-    }
     
     private class Nodo{
         private Nodo siguiente;

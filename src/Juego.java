@@ -31,7 +31,6 @@ public class Juego extends javax.swing.JFrame {
     private Ingrediente ingrediente2;
     private Ingrediente ingrediente3;
     ListaIngrediente listaIngrediente; 
-    ListaOrden listaOrden;
     ListaCircularIngrediente cintaTransportadora;
     //Fin Variables para Ingredientes
     
@@ -509,6 +508,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,11 +610,13 @@ public class Juego extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         cintaTransportadora.moverIzquierda();
+        colocarNombreEnBotones();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         cintaTransportadora.moverDerecha();
+        colocarNombreEnBotones();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnTresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTresMouseClicked
