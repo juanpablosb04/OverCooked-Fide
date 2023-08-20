@@ -1,5 +1,5 @@
 public class ListaCircularIngrediente {
-    
+
     private Nodo inicio;
     private Nodo fin;
     int contador;
