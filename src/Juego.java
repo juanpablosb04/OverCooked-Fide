@@ -186,11 +186,13 @@ public class Juego extends javax.swing.JFrame {
                 validarHCarne++;
                 cintaTransportadora.eliminar(ingrediente);
             }else{
-                JOptionPane.showMessageDialog(null,"Este ingrediente ya fue incluido");
+                JOptionPane.showMessageDialog
+        (null,"Este ingrediente ya fue incluido");
             }
             
             if(validarHCarne==2){
-                JOptionPane.showMessageDialog(null,"Orden Completada! ");
+                JOptionPane.showMessageDialog
+        (null,"Orden Completada! ");
                 puntos+=5;
                 lblPuntos.setText(String.valueOf(puntos));
                 usoPan=0;
@@ -203,7 +205,8 @@ public class Juego extends javax.swing.JFrame {
             }
         }
         
-        if(ordenPrincipal1.getText().equals("HAMBURGUESA DE QUESO: Pan, Carne y Queso")){
+        if(ordenPrincipal1.getText().equals
+        ("HAMBURGUESA DE QUESO: Pan, Carne y Queso")){
         
             if(ingrediente.equals(ingrediente0) && usoPan==0){
                 usoPan++;
@@ -218,11 +221,13 @@ public class Juego extends javax.swing.JFrame {
                 validarHQueso++;
                 cintaTransportadora.eliminar(ingrediente);
             }else{
-                JOptionPane.showMessageDialog(null,"Este ingrediente ya fue incluido");
+                JOptionPane.showMessageDialog
+        (null,"Este ingrediente ya fue incluido");
             }
             
             if(validarHQueso==3){
-                JOptionPane.showMessageDialog(null,"Orden Completada! ");
+                JOptionPane.showMessageDialog
+        (null,"Orden Completada! ");
                 puntos+=10;
                 lblPuntos.setText(String.valueOf(puntos));
                 usoPan=0;
@@ -236,7 +241,8 @@ public class Juego extends javax.swing.JFrame {
             }
         }
         
-        if(ordenPrincipal1.getText().equals("HAMBURGUESA CLASICA: Pan, Carne, Queso y Lechuga")){
+        if(ordenPrincipal1.getText().equals
+        ("HAMBURGUESA CLASICA: Pan, Carne, Queso y Lechuga")){
         
             if(ingrediente.equals(ingrediente0) && usoPan==0){
                 usoPan++;
@@ -255,11 +261,13 @@ public class Juego extends javax.swing.JFrame {
                 validarHClasica++;
                 cintaTransportadora.eliminar(ingrediente);
             }else{
-                JOptionPane.showMessageDialog(null,"Este ingrediente ya fue incluido");
+                JOptionPane.showMessageDialog
+        (null,"Este ingrediente ya fue incluido");
             }
             
             if(validarHClasica==4){
-                JOptionPane.showMessageDialog(null,"Orden Completada! ");
+                JOptionPane.showMessageDialog
+        (null,"Orden Completada! ");
                 puntos+=15;
                 lblPuntos.setText(String.valueOf(puntos));
                 usoPan=0;
@@ -274,14 +282,7 @@ public class Juego extends javax.swing.JFrame {
             }
         }
     }
-    
-    
-    //private void Cronometro(){
-    //mTimer = new Timer(10, (ActionEvent e) -> {
-    //    });
-     //   StartC();
-   // }
-    
+
     private void StartC(){
     actualizaTiempo();
     actualizaLabel();
@@ -508,7 +509,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
-        jButton3.setText("B");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -516,7 +517,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 50, 90));
 
-        jButton4.setText("B");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -524,7 +525,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 50, 90));
 
-        jButton5.setText("B");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -532,7 +533,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 50, 90));
 
-        jButton6.setText("B");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -540,7 +541,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 50, 90));
 
-        jButton7.setText("B");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
