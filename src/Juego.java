@@ -302,7 +302,7 @@ public class Juego extends javax.swing.JFrame {
             GameOver nuevo = new GameOver();
             nuevo.setVisible(true);
             this.dispose();
-           minutes = 0;
+           minutes = 5;
         }
          
     }
