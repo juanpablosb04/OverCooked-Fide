@@ -9,14 +9,22 @@
  */
 public class GameOver extends javax.swing.JFrame {
     Juego llamar = new Juego();
+    
     /**
      * Creates new form GameOver
      */
+    private int pts;
     public GameOver() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
-
+    
+    public void setPts(int pts){
+        this.pts = pts;
+        lblPuntuacionFinal.setText(String.valueOf(pts));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +56,7 @@ public class GameOver extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(159, 221, 249));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Return Over.png"))); // NOI18N
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -60,6 +69,7 @@ public class GameOver extends javax.swing.JFrame {
 
         lblPuntuacionFinal.setFont(new java.awt.Font("Snap ITC", 0, 36)); // NOI18N
         lblPuntuacionFinal.setForeground(new java.awt.Color(255, 255, 255));
+        lblPuntuacionFinal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPuntuacionFinal.setText("00");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -72,16 +82,15 @@ public class GameOver extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(lblPuntuacionFinal))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblPuntuacionFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,7 +118,7 @@ public class GameOver extends javax.swing.JFrame {
         this.dispose();
         Menu nuevo = new Menu();
         nuevo.setVisible(true);
-        lblPuntuacionFinal.setText(String.valueOf(llamar.puntos));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

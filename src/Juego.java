@@ -316,6 +316,7 @@ public class Juego extends javax.swing.JFrame {
        }
         if (minutes == 0){
             GameOver nuevo = new GameOver();
+            nuevo.setPts(puntos);
             nuevo.setVisible(true);
             this.dispose();
             minutes = 5;
