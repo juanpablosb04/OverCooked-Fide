@@ -199,7 +199,7 @@ public class Juego extends javax.swing.JFrame {
                 cintaTransportadora.eliminar(ingrediente);
             }else{
                 JOptionPane.showMessageDialog
-        (null,"Este ingrediente ya fue incluido");
+        (null,"Este ingrediente es incorrecto o ya fue incluido");
             }
             
             if(validarHCarne==2){
@@ -235,7 +235,7 @@ public class Juego extends javax.swing.JFrame {
                 cintaTransportadora.eliminar(ingrediente);
             }else{
                 JOptionPane.showMessageDialog
-        (null,"Este ingrediente ya fue incluido");
+        (null,"Este ingrediente es incorrecto o ya fue incluido");
             }
             
             if(validarHQueso==3){
@@ -276,7 +276,7 @@ public class Juego extends javax.swing.JFrame {
                 cintaTransportadora.eliminar(ingrediente);
             }else{
                 JOptionPane.showMessageDialog
-        (null,"Este ingrediente ya fue incluido");
+        (null,"Este ingrediente es incorrecto o ya fue incluido");
             }
             
             if(validarHClasica==4){
